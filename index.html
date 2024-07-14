@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ImageLoader</title>
+    <style>
+        html, body {
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+            background-color: transparent;
+            height: 100%;
+            width: 100%;
+        }
+        
+        #dynamic-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <img id="dynamic-image" src="" alt="">
+
+    <script>
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+        var imageName = getParameterByName('image');
+        if (imageName) {
+            document.getElementById('dynamic-image').src = 'src/' + imageName + '.png';
+        }
+    </script>
+</body>
+</html>
